@@ -1,23 +1,23 @@
 User Story 1 - 
-As an employee within the organisation we would like to be able to show countries/continents/regions organised by population.
+As an employee within the organization we would like to be able to show countries/continents/regions organized by population.
 
 User Story 2 - 
-As an employee within the organisation we would like to be able to retrieve the Top N populated countries in the world/continent, Where N is provided by the user.
+As an employee within the organization, we would like to be able to retrieve the Top N-populated countries in the world/continent, Where N is provided by the user.
 
 User Story 3 - 
-As an employee working within the orgnaisation we would like to be able to differentiate the populations within the capital cities around the world and also present them in our desired manner (for eg largest to smallest)
+As an employee working within the organization, we would like to be able to differentiate the populations within the capital cities around the world and also present them in our desired manner (eg largest to smallest)
 
 User Story 4 - 
-As an employee we would also like to be able to differentiate between people who live in cities and people who dont. We would like to be able to do this for our desired area, such as the world/country/region.
+As an employee, we would also like to be able to differentiate between people who live in cities and people who don't. We would like to be able to do this for our desired area, such as the world/country/region.
 
 User Story 5 - 
 An employee would also like to be able to see the population in any given region.
 
 User story 6 -
-An employee working within the organisation would like to be able to see the number of people speaking certain languages in descending or ascending order. Also be able to represent the percentage of people speaking each language around the world. 
+An employee working within the organization would like to be able to see the number of people speaking certain languages in descending or ascending order. Also, be able to represent the percentage of people speaking each language around the world. 
 
 User Story 7 - 
-An employee wants to produce reports for specific regions, contintent/country/city with specific parameters displayed in the report. For example a country report would consist of -
+An employee wants to produce reports for specific regions, continents/countries/cities with specific parameters displayed in the report. For example, a country report would consist of -
 
 Code.
 Name.
