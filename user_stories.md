@@ -8,7 +8,7 @@ User Story 3 -
 As an employee working within the orgnaisation we would like to be able to differentiate the populations within the capital cities around the world and also present them in our desired manner (for eg largest to smallest)
 
 User Story 4 - 
-As an employee we would also like to be differentiate and compare between people who live in cities and people who dont. We would like to be able to do this for our desired area, such as the world/country/region.
+As an employee we would also like to be able to differentiate between people who live in cities and people who dont. We would like to be able to do this for our desired area, such as the world/country/region.
 
 User Story 5 - 
 An employee would also like to be able to see the population in any given region.
