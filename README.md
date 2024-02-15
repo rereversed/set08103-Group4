@@ -1,6 +1,12 @@
 
 ---
 # Software Engineering Methods
+## Group members:
+- Jinson (Scrum Master)
+- Kenneth
+- Artur
+- David (Project Owner)
+
 
 Main Build Status ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/rereversed/set08103-Group4/main.yml?branch=main)
 
