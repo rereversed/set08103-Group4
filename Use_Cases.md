@@ -16,11 +16,13 @@ Primary Actor - The Employee
 
 Trigger - When the Employee requires specific information regarding population
 
-Main Success Scenario - 
+Main Success Scenario -  1 User asks system for required information and inputs the filters correctly
+                         2 System is able to connect to database and retrieve and sort information
+                         3 The data is presented to the user correctly and in the desired format
 
 Extension - The user required different or more specific information.
 
-Sub Variatins - 
+Sub Variants - 
 
 Schedule - As soon as possible
 
@@ -44,7 +46,9 @@ Primary Actor - The Employee
 
 Trigger - When the employee requires information regarding population
 
-Main Success Scenario 
+Main Success Scenario -  1 User asks system for required information and inputs the filters correctly
+                         2 System is able to connect to database and retrieve and sort information
+                         3 The data is presented to the user correctly and in the desired format
 
 Extension - The information is either not required or different information is required.
 
@@ -72,7 +76,9 @@ Primary Actor - Employee
 
 Trigger - When the employee is trying to get specific information
 
-Main succèss scenario - 
+Main succèss scenario -  1 User asks system for required information and inputs the filters correctly
+                         2 System is able to connect to database and retrieve and sort information
+                         3 The data is presented to the user correctly and in the desired format
 
 Extension - The information either is no longer required or is needed to be sorted in a different manner.
 
@@ -99,7 +105,9 @@ Primary Actor - The Employee
 
 Trigger - When the employee requires information regarding people living in cities
 
-Main success scenario -
+Main success scenario -  1 User asks system for required information and inputs the filters correctly
+                         2 System is able to connect to database and retrieve and sort information
+                         3 The data is presented to the user correctly and in the desired format
 
 Extension - The information is no longer required or information regarding different cities is required
 
@@ -126,7 +134,9 @@ Primary Actor - The employee
 
 Trigger - The employee requires information regarding population in a specific area 
 
-Main Success scenario - 
+Main Success scenario -  1 User asks system for required information and inputs the filters correctly
+                         2 System is able to connect to database and retrieve and sort information
+                         3 The data is presented to the user correctly and in the desired format
 
 Extension - The information is no longer needed or it Is needed for a different region
 
@@ -153,7 +163,9 @@ Primary Actor - The Employee
 
 Trigger - The employee requires information regarding the number people speaking specific languages 
 
-Main success scenario -
+Main success scenario -  1 User asks system for required information and inputs the filters correctly
+                         2 System is able to connect to database and retrieve and sort information
+                         3 The data is presented to the user correctly and in the desired format
 
 Extension- The information is no longer required or Is required in a different format.
 
