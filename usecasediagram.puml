@@ -1,22 +1,36 @@
+
 @startuml
-'https://plantuml.com/use-case-diagram
+!theme plain
 
-:Main Admin: as Admin
-(Use the application) as (Use)
+left to right direction
+actor Employee as e
 
-User -> (Start)
-User --> (Use)
+rectangle "Population Information System" {
 
-Admin ---> (Use)
+  usecase "Show Countries by Population" as UC1
+  usecase "Show Continents by Population" as UC2
+  usecase "Show Regions by Population" as UC3
+  usecase "Top N Populated Countries" as UC4
+  usecase "Top N Populated Cities" as UC5
+  usecase "View Capital Cities by Population" as UC6
+  usecase "Urban vs. Rural Population" as UC7
+  usecase "View Population in Region" as UC8
+  usecase "View Language Speakers" as UC9
+  usecase "Calculate Percentage of Language Speakers" as UC10
 
-note right of Admin : This is an example.
+  UC9 ..> UC10 : "<<include>>"
 
-note right of (Use)
-A note can also
-be on several lines
-end note
+}
 
-note "This note is connected\nto several objects." as N2
-(Start) .. N2
-N2 .. (Use)
+e --> UC1 : "queries"
+e --> UC2 : "queries"
+e --> UC3 : "queries"
+e --> UC4 : "specifies N"
+e --> UC5 : "specifies N"
+e --> UC6 : "selects scope"
+e --> UC7 : "selects area"
+e --> UC8 : "chooses region"
+e --> UC9 : "selects language"
+e --> UC10 : "requires calculation"
+
 @enduml
