@@ -1,7 +1,9 @@
 package com.napier.sem;
 
-public class world {
+import java.sql.*;
 
+
+public class City {
     public int ID;
 
     public String Name;
@@ -12,3 +14,4 @@ public class world {
 
     public int Population;
 }
+
