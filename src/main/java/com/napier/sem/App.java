@@ -61,18 +61,21 @@ public class App {
 
             //Create string for SQL statement
             String strSelect =
-                    "SELECT ID, Name, CountryCode "
+                    "SELECT ID, Name, CountryCode, District, Population "
                             + "FROM city "
-                            + "WHERE ID = " + ID;
+                            + "WHERE ID='" + ID + "'";
             //Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             //Return city data if valid
             //Check one is returned
             if (rset.next()) {
                 City city = new City();
-                city.ID = rset.getInt("City ID");
-                city.Name = rset.getString("City Name");
-                city.CountryCode = rset.getString("Country Code");
+                city.ID = rset.getInt("city.ID");
+                city.Name = rset.getString("city.Name");
+                city.CountryCode = rset.getString("city.CountryCode");
+                city.District = rset.getString("city.District");
+                city.Population = rset.getInt("city.Population");
+                return city;
             } else {
                 return null;
             }
@@ -81,7 +84,17 @@ public class App {
             System.out.println("Failed to get city details");
             return null;
         }
-        return null;
+    }
+
+    public void displayCity(City city) {
+        if (city != null) {
+            System.out.println(
+                    city.ID + " "
+                            + city.Name + " "
+                            + city.CountryCode + " "
+                            + city.District + " "
+                            + "Population " + city.Population);
+        }
     }
 
     public static void main(String[] args) {
@@ -91,6 +104,8 @@ public class App {
         // Connect to database
         a.connect();
 
+        City city = a.getCity(1);
+        a.displayCity(city);
         // Disconnect from database
         a.disconnect();
     }
