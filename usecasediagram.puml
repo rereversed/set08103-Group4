@@ -1,0 +1,42 @@
+
+@startuml
+!theme plain
+
+left to right direction
+actor Employee as e
+
+rectangle "Population Information System" {
+
+  usecase "Show Countries/Continents/Regions" as UC1
+  usecase "Top N Populated Countries" as UC2
+  usecase "Get All City Population" as UC3
+  usecase "Get Population of people who \nlive/don't live in the City" as UC4
+  usecase "Get Population Count" as UC5
+  usecase "View Language Speakers" as UC6
+
+  usecase "Population" as UCa
+  usecase "N Provided (User Choice)" as UCb
+  usecase "Ascending/Descending Order (User Choice)" as UCc
+  usecase "World/Country/Region (User Choice)" as UCd
+  usecase "World/Country/Region (User Choice)" as UCe
+  usecase "Calculate Percentage of Language Speakers" as UCf
+
+
+  UC1 ..> UCa : "<<organised by>>"
+  UC2 ..> UCb : "<<where>>"
+  UC3 ..> UCc : "<<ordered by>>"
+  UC4 ..> UCd : "<<for>>"
+  UC5 ..> UCe : "<<for>>"
+  UC6 ..> UCf : "<<organised by>>"
+
+}
+
+e --> UC1 : "queries"
+e --> UC2 : "queries"
+e --> UC3 : "queries"
+e --> UC4 : "specifies N"
+e --> UC5 : "specifies N"
+e --> UC6 : "selects language"
+
+
+@enduml
