@@ -88,6 +88,9 @@ public class App {
     }
 
     public void displayCity(City city) {
+        if (city == null) {
+            System.out.println("No Cities");
+        }
         if (city != null) {
             System.out.println(
                     city.ID + " "
