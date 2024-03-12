@@ -8,18 +8,24 @@ actor Employee as e
 rectangle "Population Information System" {
 
   usecase "Show Countries/Continents/Regions" as UC1
-  usecase "Top N Populated Countries" as UC2
+  usecase "Top N Populated Countries/Cities/CapitalCities" as UC2
   usecase "Get All City Population" as UC3
   usecase "Get Population of people who \nlive/don't live in the City" as UC4
   usecase "Get Population Count" as UC5
   usecase "View Language Speakers" as UC6
+  usecase "Get All Cities" as UC7
+  usecase "Get All Capital Cities/Countries (User Choice)" as UC8
 
-  usecase "Population" as UCa
+
+  usecase "Overall Population" as UCa
   usecase "N Provided (User Choice)" as UCb
+  usecase "Overall/Country/District/\nRegion/Continent Population (User Choice)" as UCb2
   usecase "Ascending/Descending Order (User Choice)" as UCc
-  usecase "World/Country/Region (User Choice)" as UCd
-  usecase "World/Country/Region (User Choice)" as UCe
+  usecase "World/Continent/Country/\nRegion/District/City (User Choice)" as UCd
+  usecase "World/Country/Region/\nContinent/City/District (User Choice)" as UCe
   usecase "Calculate Percentage of Language Speakers" as UCf
+  usecase "Continent/Region/Country/\nDistrict Population (User Choice)" as UCg
+  usecase "Continent/Region Population (User Choice)" as UCh
 
 
   UC1 ..> UCa : "<<organised by>>"
@@ -28,6 +34,11 @@ rectangle "Population Information System" {
   UC4 ..> UCd : "<<for>>"
   UC5 ..> UCe : "<<for>>"
   UC6 ..> UCf : "<<organised by>>"
+  UC7 ..> UCg : "<<for>>"
+  UC8 ..> UCh : "<<for>>"
+
+
+  UCb ..> UCb2 : "<<Organised By>>"
 
 }
 
@@ -35,8 +46,10 @@ e --> UC1 : "queries"
 e --> UC2 : "queries"
 e --> UC3 : "queries"
 e --> UC4 : "specifies N"
-e --> UC5 : "specifies N"
+e --> UC5 : "specifies scale"
 e --> UC6 : "selects language"
+e --> UC7 : "specifies options"
+e --> UC8 : "specifies options"
 
 
 @enduml
