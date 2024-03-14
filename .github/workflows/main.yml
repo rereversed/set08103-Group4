@@ -1,9 +1,9 @@
-name: A workflow for my Hello World App
+name: Workflow
 on: push
 
 jobs:
   build:
-    name: Hello world action
+    name: Build Application
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -27,7 +27,7 @@ jobs:
       - name: view logs
         run: docker logs semcontainer
       - name: Unit Tests
-        run: mvn -Dtest=com.napier.sem.AppTest test
+        run: mvn -Dtest=com.napier.sem.appTesting test
       - name: Package and Run docker compose
         run: mvn package -DskipTests
           docker-compose up --abort-on-container-exit
