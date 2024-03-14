@@ -1,6 +1,7 @@
 //Java.main
 package com.napier.sem;
 
+import java.util.ArrayList;
 import java.sql.*;
 
 public class App {
@@ -67,7 +68,7 @@ public class App {
                             + "WHERE ID='" + ID + "'";
             //Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            //Return city data if valid
+//            Return city data if valid
             //Check one is returned
             if (rset.next()) {
                 City city = new City();
@@ -86,8 +87,26 @@ public class App {
             return null;
         }
     }
+//    public ArrayList<City> getAllCities(){
+//        try {
+//            //Create SQL Statement
+//            Statement stmt = con.createStatement();
+//
+//            //Create string for SQL statement
+//            String strSelect =
+//                    "SELECT ID, Name, CountryCode, District, Population "
+//                            + "FROM city "
+//
+//            //Execute SQL statement
+//            ResultSet rset = sstmt.executeQuery(strSelect);
+//            //Return city data if valid
+//    }
 
     public void displayCity(City city) {
+        if (city == null) {
+            System.out.println("No Cities");
+        }
+
         if (city != null) {
             System.out.println(
                     city.ID + " "
@@ -101,12 +120,12 @@ public class App {
     public static void main(String[] args) {
         // Create new Application
         App a = new App();
-
         // Connect to database
         a.connect();
 
         City city = a.getCity(1);
         a.displayCity(city);
+
         // Disconnect from database
         a.disconnect();
     }
