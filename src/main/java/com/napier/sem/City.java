@@ -2,12 +2,14 @@ package com.napier.sem;
 
 
 public class City {
+    //Initialising variables for City
     public int ID;
     public String Name;
     public String CountryCode;
     public String District;
     public int Population;
 
+    //Get and Set methods for City ID.
     public int getID() {
         return ID;
     }
@@ -15,6 +17,7 @@ public class City {
         id = ID;
     }
 
+    //Get and Set methods for City
     public String getName() {
         return Name;
     }
@@ -22,6 +25,7 @@ public class City {
         name = Name;
     }
 
+    //Get and Set methods for City Country Code
     public String getCountryCode() {
         return CountryCode;
     }
@@ -29,6 +33,7 @@ public class City {
         countryCode = CountryCode;
     }
 
+    //Get and Set methods for City District
     public String getDistrict() {
         return District;
     }
@@ -36,6 +41,7 @@ public class City {
         district = District;
     }
 
+    //Get and Set methods for City Population
     public int getPopulation() {
         return Population;
     }
