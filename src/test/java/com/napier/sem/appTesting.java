@@ -12,7 +12,9 @@ public class appTesting {
     }
 
     @Test
-    void printSalariesTestNull() {
+    void printCities() {
         app.displayCity(null);
     }
+
+
 }
