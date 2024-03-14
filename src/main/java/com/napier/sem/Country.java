@@ -1,7 +1,7 @@
 package com.napier.sem;
 
 public class Country {
-
+    //Initialising variables for Country
     public String code;
     public String name;
     public String region;
@@ -16,8 +16,9 @@ public class Country {
     public String governmentFrom;
     public String headOfState;
     public int capital;
-
     public String code2;
+
+    //Get and Set methods for each Country variable.
     public String getCode() {
         return code;
     }
