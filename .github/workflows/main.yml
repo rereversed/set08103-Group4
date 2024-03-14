@@ -1,4 +1,4 @@
-name: Workflow
+name: Worflow
 on: push
 
 jobs:
@@ -29,7 +29,6 @@ jobs:
       - name: Unit Tests
         run: mvn -Dtest=com.napier.sem.appTesting test
       - name: Package and Run docker compose
-        run: mvn package -DskipTests
+        run: |
+          mvn package -DskipTests
           docker-compose up --abort-on-container-exit
-
-
