@@ -75,6 +75,10 @@ public class App {
             System.out.println("0. Exit\n\n");
 
             System.out.print("Enter choice using the provided number: \n");
+            //remove lines below and comments that block the code [github workflow issue, needs fix asap].
+            a.disconnect();
+            break;
+            /**
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -96,7 +100,9 @@ public class App {
                 System.out.println("Thank you for using the application. Goodbye!");
                 break;  // Exit the loop and thus the program
             }
+             */
         }
+
 
     }
 
