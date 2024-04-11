@@ -3,6 +3,9 @@ services:
   # Application Dockerfile is in same folder which is .
   app:
     build: .
+    stdin_open: true  # docker run -i
+    tty: true         # docker run -t
+      # if running as a daemon is not necessary, remove `-d` to see logs interactively
 
   # db is is db folder
   db:
