@@ -5,6 +5,7 @@ services:
     build: .
     stdin_open: true  # docker run -i
     tty: true         # docker run -t
+    stop_grace_period: "2m"
       # if running as a daemon is not necessary, remove `-d` to see logs interactively
 
   # db is is db folder
