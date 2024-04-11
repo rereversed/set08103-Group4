@@ -1,14 +1,74 @@
-//Java.main
 package com.napier.sem;
-
-import java.util.ArrayList;
 import java.sql.*;
 
 public class App {
+    public static Connection con = null;
     /**
-     * Connection to MySQL database.
+     * The entry point of the application.
+     * <p>
+     * This method initializes the application, connects to the database, retrieves
+     * the top N populated countries, displays them, and then disconnects from the database.
+     * </p>
+     * @param args The command line arguments (not used).
      */
-    private Connection con = null;
+    public static void main(String[] args) {
+        // Create new Application
+        App a = new App();
+        // Create new Country
+
+        Country c = new Country();
+        City d = new City();
+        Countrylanguage e = new Countrylanguage();
+
+        // Connect to database
+        a.connect();
+        ResultSet resultSet = c.getTopRegionDescending(a.con, "Southern and Central Asia", 5);
+        //resultSet = c.topNPopulatedCountries(a.con, 5);
+       // resultSet = c.getCountryDescending(a.con);
+       // resultSet = c.getContinentDescending(a.con, "Asia");
+       // resultSet = c.topNPopulatedCountriesContinent(a.con, "Asia", 4);
+       // resultSet = c.countryRegionDescending(a.con, "Southern and Central Asia");
+       // resultSet = c.topNPopulatedCountriesContinent(a.con, "Asia", 4);
+
+        // resultSet = d.topNPopulatedCitiesDistrict(a.con, "Noord-Brabant", 3);
+       //  resultSet = d.topNPopulatedCities(a.con, 5);
+       // resultSet = d.getTopRegionCityDescending(a.con, "Western Europe", 6);
+       // resultSet = d.getCitiesInContinentDesc(a.con, "Asia");
+       //  resultSet = d.getCountryCityDescending(a.con, "France");
+       // resultSet = d.topNPopulatedCitiesContinent(a.con, "Europe", 5);
+        // resultSet = d.getRegionCityDescending(a.con, "Western Europe");
+        // resultSet = d.getCityDescending(a.con);
+       // resultSet = d.getDistrictCityDescending(a.con, "Buenos Aires");
+       // resultSet = d.getTopCountryCityDescending(a.con, "France", 5);
+
+        // ResultSet resultSet = e.topNPopulatedCapitals(a.con, 5);
+        // ResultSet resultSet = e.getNRegionCapitalsDescending(a.con, "Western Europe", 6);
+        //ResultSet resultSet = e.getContinentCapitalsDescending(a.con, "Asia");
+        //ResultSet resultSet = e.topNPopulatedCapitalsByContinent(a.con, "Europe", 5);
+        // ResultSet resultSet = e.getCapitalsPopulationDesc(a.con);
+        //ResultSet resultSet = e.getRegionCapitalsDescending(a.con, "Western Europe");
+
+
+        //ResultSet resultSet = .getWorldPopulation(a.con);
+        // ResultSet resultSet = .getDistrictPopulation(a.con,  "Constantine");
+        //ResultSet resultSet = .getRegionPopulations(a.con, "Western Europe");
+        // ResultSet resultSet = .getCountryPopulation(a.con, "Germany");
+        //ResultSet resultSet = .getCityPopulation(a.con, "Edinburgh");
+        //ResultSet resultSet = .getCityPopulationAll(a.con);
+        //ResultSet resultSet = .getContinentCityPopulations(a.con);
+        //ResultSet resultSet = .getContinentPopulations(a.con, "Asia");
+        //ResultSet resultSet = .getAllRegionPopulations(a.con);
+
+        //c.displayCountries(resultSet);
+        //d.displayCities(resultSet);
+        //.displayCapitals(resultSet);
+        //.displayPopulations(resultSet);
+
+
+
+        // Disconnect from database
+        a.disconnect();
+    }
 
     /**
      * Connect to the MySQL database.
@@ -49,85 +109,10 @@ public class App {
             try {
                 // Close connection
                 con.close();
-                System.out.println("Successfully disconnected");
+                System.out.println(("Connection closed"));
             } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }
     }
-
-    public City getCity(int ID) {
-        try {
-            //Create SQL Statement
-            Statement stmt = con.createStatement();
-
-            //Create string for SQL statement
-            String strSelect =
-                    "SELECT ID, Name, CountryCode, District, Population "
-                            + "FROM city "
-                            + "WHERE ID='" + ID + "'";
-            //Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-//            Return city data if valid
-            //Check one is returned
-            if (rset.next()) {
-                City city = new City();
-                city.ID = rset.getInt("city.ID");
-                city.Name = rset.getString("city.Name");
-                city.CountryCode = rset.getString("city.CountryCode");
-                city.District = rset.getString("city.District");
-                city.Population = rset.getInt("city.Population");
-                return city;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get city details");
-            return null;
-        }
-    }
-//    public ArrayList<City> getAllCities(){
-//        try {
-//            //Create SQL Statement
-//            Statement stmt = con.createStatement();
-//
-//            //Create string for SQL statement
-//            String strSelect =
-//                    "SELECT ID, Name, CountryCode, District, Population "
-//                            + "FROM city "
-//
-//            //Execute SQL statement
-//            ResultSet rset = sstmt.executeQuery(strSelect);
-//            //Return city data if valid
-//    }
-
-    public void displayCity(City city) {
-        if (city == null) {
-            System.out.println("No Cities");
-        }
-
-        if (city != null) {
-            System.out.println(
-                    city.ID + " "
-                            + city.Name + " "
-                            + city.CountryCode + " "
-                            + city.District + " "
-                            + "Population " + city.Population);
-        }
-    }
-
-    public static void main(String[] args) {
-        // Create new Application
-        App a = new App();
-        // Connect to database
-        a.connect();
-
-        City city = a.getCity(1);
-        a.displayCity(city);
-
-        // Disconnect from database
-        a.disconnect();
-    }
-
 }
