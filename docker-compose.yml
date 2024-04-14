@@ -1,15 +1,38 @@
 version: '3'
+
 services:
-  # Application Dockerfile is in same folder which is .
   app:
     build: .
     stdin_open: true  # docker run -i
     tty: true         # docker run -t
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - CI=${CI}  # Pass CI environment variable from the host to the container
     stop_grace_period: "2m"
-      # if running as a daemon is not necessary, remove `-d` to see logs interactively
+    networks:
+      - app-network
 
-  # db is is db folder
   db:
     build: db/.
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: world
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+
+networks:
+  app-network:
+    driver: bridge

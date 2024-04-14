@@ -1,10 +1,12 @@
-name: Worflow
+name: Workflow
 on: push
 
 jobs:
   build:
     name: Build Application
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    env:
+        CI: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -15,11 +17,12 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Unit Test
+      - name: Run Maven Tests
         run: |
           mvn -Dtest=com.napier.sem.*Test test
-      - name: Package and Run docker compose
+      - name: Package Application
+        run: mvn package -DskipTests
+      - name: Run Docker Compose
         run: |
-          mvn package -DskipTests
           docker-compose up --abort-on-container-exit
           docker-compose down
