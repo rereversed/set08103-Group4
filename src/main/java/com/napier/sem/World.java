@@ -67,7 +67,7 @@ public class World {
     }
 
     public void getTopNCapitalCitiesByPopulation(Connection con, int n) { //20
-        /**
+
         if (n < 1) {
             System.out.println("N must be at least 1.");
             n = 1;  // Setting to a default value of 1 if the input is invalid
@@ -101,7 +101,7 @@ public class World {
         } catch (Exception e) {
             System.out.println("Failed to get capital cities by population: " + e.getMessage());
         }
-         */
+
     }
 
     //next report
