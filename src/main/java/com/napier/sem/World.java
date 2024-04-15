@@ -81,6 +81,42 @@ public class World {
             return;  // Exit the method if there is no connection
         }
 
+        String query = "SELECT country.code, country.name, country.continent, country.region, country.population, country.capital\n" +
+                "FROM country\n" +
+                "ORDER BY country.population DESC\n" +
+                "LIMIT " + n + ";";
+
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+                System.out.println("Top " + n + " Populated Countries:");
+                while (rs.next()) {
+                    String code = rs.getString("code");
+                    String name = rs.getString("name");
+                    String continent = rs.getString("continent");
+                    String region = rs.getString("region");
+                    int population = rs.getInt("population");
+                    String capital = rs.getString("capital");
+                    System.out.printf("%s - %s, %s, %s, Population: %d, Capital: %s\n", code, name, continent, region, population, capital);
+                }
+            } catch (SQLException e) {
+                System.out.println("Failed to get country details: " + e.getMessage());
+        }
+    }
+
+    public void getCitiesByPopulation(Connection con) {
+    }
+
+    public void getTopNCitiesByPopulation(Connection con, int n) {
+        if (n < 1) {
+            System.out.println("N must be at least 1.");  // Ensuring N is positive
+            n = 1;
+        }
+        if (con == null) {
+            System.out.println("Database connection is null.");
+            return;  // Exit the method if there is no connection
+        }
+
         String query = "SELECT city.name, city.countryCode, city.district, city.population " +
                 "FROM country " +
                 "JOIN city ON city.countryCode = country.code " +
@@ -102,12 +138,6 @@ public class World {
         } catch (SQLException e) {
             System.out.println("Failed to get city details: " + e.getMessage());
         }
-    }
-
-    public void getCitiesByPopulation(Connection con) {
-    }
-
-    public void getTopNCitiesByPopulation(Connection con, int n) {
     }
 
     public void getCapitalCitiesByPopulation(Connection con) {
