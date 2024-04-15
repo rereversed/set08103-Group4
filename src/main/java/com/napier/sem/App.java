@@ -37,6 +37,27 @@ public class App {
                 }
             }
         }
+
+        public String getUserCountry(){
+            while (true){
+                System.out.println(("Please Input the country "));
+                String input = scanner.nextLine();
+                try {
+                    String country = input;
+                    if (country != null){
+                        return country;
+                    } else {
+                        System.out.println("Error: Please enter a country");
+                    }
+                }   catch (Exception E){
+                    System.out.println(" Error: Invalid Input");
+                }
+
+            }
+
+        }
+
+
     }
 
     public static void main(String[] args) {
