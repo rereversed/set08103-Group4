@@ -14,7 +14,7 @@ public class World {
 
 
     public void getWorldPopulation(Connection con) { //26
-        /**
+
         if (con == null) {
             System.out.println("Connection is null.");
             return;  // Exit the method if there is no connection
@@ -48,7 +48,7 @@ public class World {
         } catch (SQLException e) {
             System.out.println("Failed to get population details: " + e.getMessage());
         }
-         */
+
     }
 
     public void getCountriesByPopulation(Connection con) {
