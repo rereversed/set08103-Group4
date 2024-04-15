@@ -1,10 +1,17 @@
 package com.napier.sem;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class World {
 
     public String name;
+    public long population;
+    public long urbanPopulation;
+    public long ruralPopulation;
+
 
     public void getWorldPopulation(Connection con) { //26
 
@@ -45,63 +52,9 @@ public class World {
     }
 
     public void getCountriesByPopulation(Connection con) {
-        if (con == null) {
-            System.out.println("Connection is null.");
-            return;  // Exit the method if there is no connection
-        }
-
-        String query = "SELECT country.code, country.name, country.continent, country.region, country.population, country.capital " +
-                "FROM country " +
-                "ORDER BY country.population DESC;";
-
-        try (Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            System.out.println("Countries by Population:");
-            while (rs.next()) {
-                String code = rs.getString("code");
-                String name = rs.getString("name");
-                String continent = rs.getString("continent");
-                String region = rs.getString("region");
-                int population = rs.getInt("population");
-                String capital = rs.getString("capital");
-                System.out.printf("%s - %s, %s, %s, Population: %d, Capital: %s\n", code, name, continent, region, population, capital);
-            }
-        } catch (SQLException e) {
-            System.out.println("Failed to get country details: " + e.getMessage());
-        }
     }
 
     public void getTopNCountriesByPopulation(Connection con, int n) {
-        if (n < 1) {
-            System.out.println("N must be at least 1.");  // Ensuring N is positive
-            n = 1;
-        }
-        if (con == null) {
-            System.out.println("Database connection is null.");
-            return;  // Exit the method if there is no connection
-        }
-
-        String query = "SELECT city.name, city.countryCode, city.district, city.population " +
-                "FROM country " +
-                "JOIN city ON city.countryCode = country.code " +
-                "ORDER BY city.population DESC " +
-                "LIMIT ?;";  // Use placeholders for parameters
-
-        try (PreparedStatement stmt = con.prepareStatement(query)) {
-            stmt.setInt(1, n);  // Set the LIMIT value safely
-            try (ResultSet rs = stmt.executeQuery()) {
-                System.out.println("Top " + n + " Populated Cities:");
-                while (rs.next()) {
-                    String name = rs.getString("name");
-                    String countryCode = rs.getString("countryCode");
-                    String district = rs.getString("district");
-                    int population = rs.getInt("population");
-                    System.out.printf("%s (%s, %s) - Population: %d\n", name, district, countryCode, population);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Failed to get city details: " + e.getMessage());
-        }
     }
 
     public void getCitiesByPopulation(Connection con) {
@@ -113,38 +66,43 @@ public class World {
     public void getCapitalCitiesByPopulation(Connection con) {
     }
 
-    public void getTopNCapitalCitiesByPopulation(Connection con, int n) {
+    public void getTopNCapitalCitiesByPopulation(Connection con, int n) { //20
+
         if (n < 1) {
             System.out.println("N must be at least 1.");
-            n = 1;  // Set to a default value of 1 if the input is invalid
+            n = 1;  // Setting to a default value of 1 if the input is invalid
         }
         if (con == null) {
             System.out.println("Database connection is null.");
-            return;  // Exit the method if there is no connection
+            return;  // Since it's void, we simply return
         }
 
-        String query = "SELECT city.name AS capital, country.name AS country_name, city.population " +
-                "FROM country " +
-                "JOIN city ON city.id = country.capital " +
-                "ORDER BY city.population DESC " +
-                "LIMIT ?;";
+        // Use try-with-resources to handle the resources automatically
+        try (Statement stmt = con.createStatement()) {
+            // Construct SQL query
+            String strSelect =
+                    "SELECT city.name AS capital, country.name, city.population " +
+                            "FROM country " +
+                            "INNER JOIN city ON city.countryCode = country.code " +
+                            "WHERE country.capital = city.ID " +
+                            "ORDER BY city.population DESC " +
+                            "LIMIT " + n + ";";
 
-        try (PreparedStatement stmt = con.prepareStatement(query)) {
-            stmt.setInt(1, n);  // Set the LIMIT parameter in the query
-            try (ResultSet rs = stmt.executeQuery()) {
-                System.out.println("Top " + n + " Capital Cities by Population:");
-                while (rs.next()) {
-                    String capital = rs.getString("capital");
-                    String countryName = rs.getString("country_name");
-                    int population = rs.getInt("population");
-                    System.out.printf("%s in %s has a population of %d\n", capital, countryName, population);
-                }
+            // Execute SQL statement and process the ResultSet
+            ResultSet rs = stmt.executeQuery(strSelect);
+
+            // Example of processing the ResultSet
+            while (rs.next()) {
+                String capital = rs.getString("capital");
+                String countryName = rs.getString("country.name");
+                int population = rs.getInt("city.population");
+                System.out.println(capital + " in " + countryName + " has a population of " + population);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Failed to get capital cities by population: " + e.getMessage());
         }
-    }
 
+    }
 
     //next report
 
