@@ -173,6 +173,7 @@ public class App {
     //Function for List of choices
     public static void processChoice(int choice, App a, World b, Continent c, Region d, Country e, Language f) {
         int n;
+        String name;
         switch (choice) {
             case 1: //WORLD
                 b.getCountriesByPopulation(con);
