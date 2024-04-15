@@ -26,6 +26,9 @@ public class Country {
     public void setName(String setName) {
         this.name = setName;
     }
+    public int population;
+
+
 
 
     public static void getCountry(String query, Connection con) {
@@ -85,13 +88,47 @@ public class Country {
     public void getPopulationDistributionByCountry(Connection con) {
     }
 
-    public void getCountryPopulation(Connection con) {
+    public void getCountryPopulation(Connection con, String name) {
+        System.out.println(name);
+        if(con == null) {
+            System.out.println("Connection is null.");
+            return;
+        }
+
+        String query = "SELECT * " +
+                        "FROM country " +
+                        "WHERE name = '" +  name + "'";
+
+        System.out.println(query);
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                String countryName = rs.getString("Name");
+                int population = rs.getInt("Population");
+
+                System.out.println(countryName);
+                System.out.println("Total Population: " + population);
+               }
+        } catch (SQLException e) {
+            System.out.println("Failed to get population details: " + e.getMessage());
+        }
+
     }
 
     public void getDistrictPopulation(Connection con) {
     }
 
     public void getCityPopulation(Connection con) {
+//        if(con == null) {
+//            System.out.println("Connection is null.");
+//            return;
+//        }
+//
+//        String query =
+//                "SELECT * FROM city ORDER BY city.population DESC";
+//        getCountry(query, con);
+
     }
 }
 

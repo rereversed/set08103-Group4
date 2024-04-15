@@ -38,24 +38,24 @@ public class App {
             }
         }
 
-        public String getUserCountry(){
-            while (true){
-                System.out.println(("Please Input the country "));
-                String input = scanner.nextLine();
-                try {
-                    String country = input;
-                    if (country != null){
-                        return country;
-                    } else {
-                        System.out.println("Error: Please enter a country");
-                    }
-                }   catch (Exception E){
-                    System.out.println(" Error: Invalid Input");
+        public String getUserCountry() {
+
+            System.out.println(("Please Input the country "));
+            String input = scanner.nextLine();
+            try {
+                String country = input;
+                if (country != null) {
+                    return country;
+                } else {
+                    System.out.println("Error: Please enter a country");
                 }
-
+            } catch (Exception E) {
+                System.out.println(" Error: Invalid Input");
             }
-
+        return null;
         }
+
+
 
         public String getUserContinent(){
             while (true){
@@ -271,7 +271,9 @@ public class App {
                 d.getRegionPopulation(con);
                 break;
             case 29: /*  Country  */
-                e.getCountryPopulation(con);
+                System.out.println("Test");
+                name = inputHandler.getUserCountry();
+                e.getCountryPopulation(con, name);
                 break;
             case 30: /*  Country  */
                 e.getDistrictPopulation(con);
