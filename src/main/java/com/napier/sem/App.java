@@ -58,7 +58,6 @@ public class App {
 
 
         public String getUserContinent(){
-            while (true){
                 System.out.println(("Please Input the continent "));
                 String input = scanner.nextLine();
                 try {
@@ -72,12 +71,10 @@ public class App {
                     System.out.println(" Error: Invalid Input");
                 }
 
-            }
-
+            return null;
         }
 
         public String getUserRegion (){
-            while (true){
                 System.out.println(("Please Input the Region "));
                 String input = scanner.nextLine();
                 try {
@@ -90,8 +87,24 @@ public class App {
                 }   catch (Exception E){
                     System.out.println(" Error: Invalid Input");
                 }
+            return null;
+        }
 
-            }
+        public String getUserCity (){
+                System.out.println(("Please Input the City "));
+                String input = scanner.nextLine();
+                try {
+                    String city = input;
+                    if (city != null){
+                        return city;
+                    } else {
+                        System.out.println("Error: Please enter a City");
+                    }
+                }   catch (Exception E){
+                    System.out.println(" Error: Invalid Input");
+                }
+
+            return null;
 
         }
 
