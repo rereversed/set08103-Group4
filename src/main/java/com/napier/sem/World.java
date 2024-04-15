@@ -52,6 +52,30 @@ public class World {
     }
 
     public void getCountriesByPopulation(Connection con) {
+        if (con == null) {
+            System.out.println("Connection is null.");
+            return;  // Exit the method if there is no connection
+        }
+
+        String query = "SELECT country.code, country.name, country.continent, country.region, country.population, country.capital " +
+                "FROM country " +
+                "ORDER BY country.population DESC;";
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            System.out.println("Countries by Population:");
+            while (rs.next()) {
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+                String continent = rs.getString("continent");
+                String region = rs.getString("region");
+                int population = rs.getInt("population");
+                String capital = rs.getString("capital");
+                System.out.printf("%s - %s, %s, %s, Population: %d, Capital: %s\n", code, name, continent, region, population, capital);
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to get country details: " + e.getMessage());
+        }
     }
 
     public void getTopNCountriesByPopulation(Connection con, int n) {
