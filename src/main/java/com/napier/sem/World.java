@@ -8,10 +8,6 @@ import java.sql.Statement;
 public class World {
 
     public String name;
-    public long population;
-    public long urbanPopulation;
-    public long ruralPopulation;
-
 
     public void getWorldPopulation(Connection con) { //26
 
