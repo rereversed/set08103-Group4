@@ -1,9 +1,6 @@
 package com.napier.sem;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class World {
 
@@ -116,42 +113,36 @@ public class World {
     public void getCapitalCitiesByPopulation(Connection con) {
     }
 
-    public void getTopNCapitalCitiesByPopulation(Connection con, int n) { //20
-
+    public void getTopNCapitalCitiesByPopulation(Connection con, int n) {
         if (n < 1) {
             System.out.println("N must be at least 1.");
-            n = 1;  // Setting to a default value of 1 if the input is invalid
+            n = 1;  // Set to a default value of 1 if the input is invalid
         }
         if (con == null) {
             System.out.println("Database connection is null.");
-            return;  // Since it's void, we simply return
+            return;  // Exit the method if there is no connection
         }
 
-        // Use try-with-resources to handle the resources automatically
-        try (Statement stmt = con.createStatement()) {
-            // Construct SQL query
-            String strSelect =
-                    "SELECT city.name AS capital, country.name, city.population " +
-                            "FROM country " +
-                            "INNER JOIN city ON city.countryCode = country.code " +
-                            "WHERE country.capital = city.ID " +
-                            "ORDER BY city.population DESC " +
-                            "LIMIT " + n + ";";
+        String query = "SELECT city.name AS capital, country.name AS country_name, city.population " +
+                "FROM country " +
+                "JOIN city ON city.id = country.capital " +
+                "ORDER BY city.population DESC " +
+                "LIMIT ?;";
 
-            // Execute SQL statement and process the ResultSet
-            ResultSet rs = stmt.executeQuery(strSelect);
-
-            // Example of processing the ResultSet
-            while (rs.next()) {
-                String capital = rs.getString("capital");
-                String countryName = rs.getString("country.name");
-                int population = rs.getInt("city.population");
-                System.out.println(capital + " in " + countryName + " has a population of " + population);
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setInt(1, n);  // Set the LIMIT parameter in the query
+            try (ResultSet rs = stmt.executeQuery()) {
+                System.out.println("Top " + n + " Capital Cities by Population:");
+                while (rs.next()) {
+                    String capital = rs.getString("capital");
+                    String countryName = rs.getString("country_name");
+                    int population = rs.getInt("population");
+                    System.out.printf("%s in %s has a population of %d\n", capital, countryName, population);
+                }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Failed to get capital cities by population: " + e.getMessage());
         }
-
     }
 
     //next report
