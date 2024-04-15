@@ -75,6 +75,36 @@ public class World {
     }
 
     public void getTopNCountriesByPopulation(Connection con, int n) {
+        if (n < 1) {
+            System.out.println("N must be at least 1.");  // Ensuring N is positive
+            n = 1;
+        }
+        if (con == null) {
+            System.out.println("Database connection is null.");
+            return;  // Exit the method if there is no connection
+        }
+
+        String query = "SELECT city.name, city.countryCode, city.district, city.population " +
+                "FROM country " +
+                "JOIN city ON city.countryCode = country.code " +
+                "ORDER BY city.population DESC " +
+                "LIMIT ?;";  // Use placeholders for parameters
+
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setInt(1, n);  // Set the LIMIT value safely
+            try (ResultSet rs = stmt.executeQuery()) {
+                System.out.println("Top " + n + " Populated Cities:");
+                while (rs.next()) {
+                    String name = rs.getString("name");
+                    String countryCode = rs.getString("countryCode");
+                    String district = rs.getString("district");
+                    int population = rs.getInt("population");
+                    System.out.printf("%s (%s, %s) - Population: %d\n", name, district, countryCode, population);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to get city details: " + e.getMessage());
+        }
     }
 
     public void getCitiesByPopulation(Connection con) {
