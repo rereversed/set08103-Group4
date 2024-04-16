@@ -92,7 +92,34 @@ public class Country {
 
     }
 
-    public void getTopNCitiesByDistrictPopulation(Connection con, int n) {
+    public void getTopNCitiesByDistrictPopulation(Connection con, int n, String name) {
+        if (con == null){
+            System.out.println("Connection is Null");
+            return;
+        }
+        if (n<1){
+            System.out.println("N Must be at least 1");
+            n=1;
+        }
+
+        String query = "SELECT Name, Population " +
+                        "FROM city " +
+                        "WHERE district = '" + name + "'" +
+                        "ORDER By Population DESC " +
+                        "LIMIT " + n;
+
+        try (Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query)){
+            System.out.println(("Top " + n + " " + "Populated Countries:"));
+
+            while(rs.next()){
+                String cityName = rs.getString("name");
+                int population = rs.getInt("population");
+                System.out.printf("- %s, Population: %d \n", cityName, population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Required Details: " + e.getMessage());
+        }
     }
 
     public void getPopulationDistributionByCountry(Connection con) {
