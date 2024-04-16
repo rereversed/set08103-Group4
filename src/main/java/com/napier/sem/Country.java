@@ -101,7 +101,29 @@ public class Country {
 
     }
 
-    public void getDistrictPopulation(Connection con) {
+    public void getDistrictPopulation(Connection con, String name) {
+        if(con == null){
+            System.out.println("Connection is null");
+            return;
+        }
+
+        String query = "SELECT SUM(Population) AS total_population " +
+                        "FROM city " +
+                        "WHERE District = '" + name + "'";
+
+
+
+        try ( Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+            if (rs.next()){
+                int population = rs.getInt("total_population");
+
+                System.out.println(name);
+                System.out.println(population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Population Details:" +  e.getMessage());
+        }
     }
 
     public void getCityPopulation(Connection con) {
