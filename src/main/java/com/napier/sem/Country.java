@@ -122,7 +122,51 @@ public class Country {
         }
     }
 
-    public void getPopulationDistributionByCountry(Connection con) {
+    public void getPopulationDistributionByCountry(Connection con, String name) {
+
+        String countryCode = null;
+        int totalPopulation = 0;
+
+        if (con == null){
+            System.out.println("Connection is null");
+            return;
+        }
+
+        String query = "SELECT * " +
+                        "FROM country " +
+                        "WHERE name = '" + name + "'";
+
+        try (Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+            if(rs.next()){
+                totalPopulation = rs.getInt("Population");
+                countryCode = rs.getString("code");
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Population Details: " + e.getMessage() );
+        }
+
+
+        String query2 = "SELECT SUM(population) AS total_population_in_cities " +
+                        "FROM city " +
+                        "WHERE countrycode = '" + countryCode + "'";
+
+
+        try (Statement stmt2 = con.createStatement();
+            ResultSet rs = stmt2.executeQuery(query2)){
+
+            if (rs.next()){
+                int populationInCities = rs.getInt("total_population_in_cities");
+                int populationNotInCities = (totalPopulation - populationInCities);
+
+                System.out.println("Total Population: " + totalPopulation);
+                System.out.println("Population in Cities: " + populationInCities);
+                System.out.println("Population Not in Cities: " + populationNotInCities);
+            }
+
+        }catch (SQLException e){
+            System.out.println("Failed to get Population Deatils: " + e.getMessage());
+        }
     }
 
     public void getCountryPopulation(Connection con, String name) {
@@ -162,7 +206,6 @@ public class Country {
         String query = "SELECT SUM(Population) AS total_population " +
                         "FROM city " +
                         "WHERE District = '" + name + "'";
-
 
 
         try ( Statement stmt = con.createStatement();
