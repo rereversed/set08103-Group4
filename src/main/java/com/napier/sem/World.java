@@ -105,6 +105,29 @@ public class World {
     }
 
     public void getCitiesByPopulation(Connection con) {
+        if (con == null) {
+            System.out.println("Connection is null.");
+            return;  // Exit the method if there is no connection
+        }
+
+        String query = "SELECT country.name AS country_name, city.name AS capital, city.population " +
+                "FROM country " +
+                "JOIN city ON city.countryCode = country.code " +
+                "WHERE country.capital = city.ID " +
+                "ORDER BY city.population DESC;";
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            System.out.println("Capitals by Descending Population:");
+            while (rs.next()) {
+                String countryName = rs.getString("country_name");
+                String capital = rs.getString("capital");
+                int population = rs.getInt("population");
+                System.out.printf("%s - %s has a population of %d\n", countryName, capital, population);
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to get capital details: " + e.getMessage());
+        }
     }
 
     public void getTopNCitiesByPopulation(Connection con, int n) {
