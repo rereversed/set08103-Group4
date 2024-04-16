@@ -117,7 +117,6 @@ public class Country {
     }
 
     public void getDistrictPopulation(Connection con, String name) {
-        System.out.println("TEST");
         if(con == null){
             System.out.println("Connection is null");
             return;
@@ -132,7 +131,6 @@ public class Country {
         try ( Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query)){
             if (rs.next()){
-                //String districtName = rs.getString("district");
                 int population = rs.getInt("total_population");
 
                 System.out.println(name);
@@ -141,8 +139,6 @@ public class Country {
         }catch (SQLException e){
             System.out.println("Failed to get Population Details:" +  e.getMessage());
         }
-
-
     }
 
     public void getCityPopulation(Connection con) {
