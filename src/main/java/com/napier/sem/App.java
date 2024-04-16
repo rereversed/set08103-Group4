@@ -240,7 +240,9 @@ public class App {
                 e.getCitiesByCountryPopulation(con);
                 break;
             case 11: /*  Country  */
-                e.getCitiesByDistrictPopulation(con);
+                name = inputHandler.getUserDistrict();
+                System.out.println("City Name"+ "  "+  "Population");
+                e.getCitiesByDistrictPopulation(con, name);
                 break;
             case 12: /*  World  */
                 n = inputHandler.getPositiveInt();

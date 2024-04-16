@@ -38,7 +38,31 @@ public class Country {
 
     }
 
-    public void getCitiesByDistrictPopulation(Connection con) {
+    public void getCitiesByDistrictPopulation(Connection con, String name) {
+        if ( con == null){
+            System.out.println("Connection is null");
+            return;
+        }
+
+        String query = "SELECT Name, Population " +
+                "FROM city " +
+                "WHERE District = '" + name + "'" +
+                "ORDER BY Population DESC";
+
+
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+            while (rs.next()){
+                String cityName = rs.getString("Name");
+                int population = rs.getInt("Population");
+
+                System.out.println(cityName + "  " +  population );
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Population details: " + e.getMessage());
+        }
+
     }
 
     public void getTopNCitiesByCountryPopulation(Connection con, int n) {
