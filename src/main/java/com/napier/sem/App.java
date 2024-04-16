@@ -307,10 +307,12 @@ public class App {
                 e.getCountryPopulation(con, name);
                 break;
             case 30: /*  Country  */
-                e.getDistrictPopulation(con);
+                name = inputHandler.getUserDistrict();
+                e.getDistrictPopulation(con,name);
                 break;
             case 31: /*  Country  */
-                e.getCityPopulation(con);
+                name = inputHandler.getUserCity();
+                e.getCityPopulation(con, name);
                 break;
             case 32: /* Language */
                 f.getLanguageSpeakersPopulation(con);

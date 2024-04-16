@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.stream.StreamSupport;
 
 public class Country {
     private String code;
@@ -119,16 +120,28 @@ public class Country {
     public void getDistrictPopulation(Connection con) {
     }
 
-    public void getCityPopulation(Connection con) {
-//        if(con == null) {
-//            System.out.println("Connection is null.");
-//            return;
-//        }
-//
-//        String query =
-//                "SELECT * FROM city ORDER BY city.population DESC";
-//        getCountry(query, con);
+    public void getCityPopulation(Connection con, String name) {
+           if(con == null) {
+               System.out.println("Connection is null.");
+               return;
+           }
+           String query = "SELECT * " +
+                            "FROM city " +
+                            "WHERE Name ='" + name +"'";
 
+           try(Statement stmt = con.createStatement();
+               ResultSet rs = stmt.executeQuery(query)){
+
+               if(rs.next()) {
+                   String cityName = rs.getString("Name");
+                   int population = rs.getInt("Population");
+
+                   System.out.println(cityName);
+                   System.out.println("Total Population " + population );
+               }
+        }catch (SQLException e){
+               System.out.println("Failed to get population details " + e.getMessage());
+           }
     }
 }
 
