@@ -108,6 +108,24 @@ public class App {
 
         }
 
+        public String getUserDistrict (){
+            System.out.println(("Please Input the District "));
+            String input = scanner.nextLine();
+            try {
+                String district = input;
+                if (district != null){
+                    return district;
+                } else {
+                    System.out.println("Error: Please enter a District");
+                }
+            }   catch (Exception E){
+                System.out.println(" Error: Invalid Input");
+            }
+
+            return null;
+
+        }
+
 
 
     }
