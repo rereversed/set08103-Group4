@@ -262,7 +262,8 @@ public class App {
                 break;
             case 16: /*  Country  */
                 n = inputHandler.getPositiveInt();
-                e.getTopNCitiesByDistrictPopulation(con, n);
+                name = inputHandler.getUserDistrict();
+                e.getTopNCitiesByDistrictPopulation(con, n, name);
                 break;
             case 17: /*  World  */
                 b.getCapitalCitiesByPopulation(con);
