@@ -302,16 +302,16 @@ public class App {
                 d.getRegionPopulation(con);
                 break;
             case 29: /*  Country  */
-                System.out.println("Test");
                 name = inputHandler.getUserCountry();
                 e.getCountryPopulation(con, name);
                 break;
             case 30: /*  Country  */
                 name = inputHandler.getUserDistrict();
-                e.getDistrictPopulation(con, name);
+                e.getDistrictPopulation(con,name);
                 break;
             case 31: /*  Country  */
-                e.getCityPopulation(con);
+                name = inputHandler.getUserCity();
+                e.getCityPopulation(con, name);
                 break;
             case 32: /* Language */
                 f.getLanguageSpeakersPopulation(con);
