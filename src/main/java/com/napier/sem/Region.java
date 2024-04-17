@@ -33,7 +33,35 @@ public class Region {
 
     }
 
-    public void getTopNCountriesByRegionPopulation(Connection con, int n) {
+    public void getTopNCountriesByRegionPopulation(Connection con, int n, String name) {
+        if (con == null){
+            System.out.println("Connection is Null");
+            return;
+        }
+        if(n<1){
+            System.out.println("N must be at least 1 ");
+            n=1;
+        }
+
+        String query = "SELECT Name AS country_name, Population " +
+                        "FROM country " +
+                        "WHERE Region = '" + name + "'" +
+                        "ORDER BY Population DESC " +
+                        "LIMIT " + n;
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+            System.out.println("Top " + n + " Populated Countries:");
+
+            while ((rs.next())){
+                String countryName = rs.getString("country_name");
+                int population = rs.getInt("Population");
+
+                System.out.println(countryName + "   " + population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get details " + e.getMessage());
+        }
     }
 
     public void getCitiesByRegionPopulation(Connection con) {

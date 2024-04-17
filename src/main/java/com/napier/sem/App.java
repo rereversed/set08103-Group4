@@ -227,8 +227,9 @@ public class App {
                 c.getTopNCountriesByContinentPopulation(con, n, name);
                 break;
             case 6: /*  Region  */
+                name = inputHandler.getUserRegion();
                 n = inputHandler.getPositiveInt();
-                d.getTopNCountriesByRegionPopulation(con, n);
+                d.getTopNCountriesByRegionPopulation(con, n, name);
                 break;
             case 7: /*  World  */
                 b.getCitiesByPopulation(con);
