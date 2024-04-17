@@ -32,7 +32,42 @@ public class Continent {
 
     }
 
-    public void getTopNCountriesByContinentPopulation(Connection con, int n) {
+    public void getTopNCountriesByContinentPopulation(Connection con, int n, String name) {
+        if (con == null){
+            System.out.println("Connection Is null");
+            return;
+        }
+
+        if (n<1){
+            System.out.println("N must be at least 1");
+            n=1;
+        }
+
+        String query =  "SELECT Name, Population, Region " +
+                        "FROM country " +
+                        "WHERE continent = '" + name + "'" +
+                        "ORDER By Population DESC " +
+                        "LIMIT " + n;
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            System.out.println(("Top " + n + " " + "Populated Countries in " + name +":"));
+
+
+            while (rs.next()){
+                String countryName = rs.getString("Name");
+                String region = rs.getString("Region");
+                int population = rs.getInt("Population");
+
+                System.out.println(countryName + "  " + region + "  " + population);
+
+            }
+
+        }catch (SQLException e){
+            System.out.println("Failed to get required details: " + e.getMessage());
+        }
+
     }
 
     public void getCitiesByContinentPopulation(Connection con) {

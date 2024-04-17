@@ -222,7 +222,8 @@ public class App {
                 break;
             case 5: /*  Continent  */
                 n = inputHandler.getPositiveInt();
-                c.getTopNCountriesByContinentPopulation(con, n);
+                name = inputHandler.getUserContinent();
+                c.getTopNCountriesByContinentPopulation(con, n,name);
                 break;
             case 6: /*  Region  */
                 n = inputHandler.getPositiveInt();
