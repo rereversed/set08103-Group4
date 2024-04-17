@@ -239,7 +239,8 @@ public class App {
                 c.getCitiesByContinentPopulation(con,name);
                 break;
             case 9: /*  Region  */
-                d.getCitiesByRegionPopulation(con);
+                name = inputHandler.getUserRegion();
+                d.getCitiesByRegionPopulation(con,name);
                 break;
             case 10: /*  Country  */
                 e.getCitiesByCountryPopulation(con);
