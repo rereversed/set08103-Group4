@@ -99,7 +99,39 @@ public class Continent {
 
     }
 
-    public void getTopNCitiesByContinentPopulation(Connection con, int n) {
+    public void getTopNCitiesByContinentPopulation(Connection con, int n, String name) {
+        if(con == null){
+            System.out.println("Connection is Null: ");
+            return;
+        }
+
+        if(n<1){
+            System.out.println("N must be at least 1.");
+            n=1;
+        }
+
+        String query =  "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population " +
+                        "FROM city " +
+                        "JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE country.Continent = '" + name + "'" +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n;
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            while(rs.next()){
+                String cityName = rs.getString("city_name");
+                String countryName = rs.getString("country_name");
+                String district = rs.getString("District");
+                int population = rs.getInt("Population");
+
+                System.out.printf("%-10s | %-12s | %-8s | %,10d\n", cityName, countryName, district, population);
+            }
+            }catch (SQLException e){
+            System.out.println("Failed to get Details: " + e.getMessage());
+        }
+
     }
 
     public void getCapitalCitiesByContinentPopulation(Connection con) {
