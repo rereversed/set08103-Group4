@@ -118,6 +118,39 @@ public class Continent {
         }
     }
 
-    public void getContinentPopulation(Connection con) {
+    public void getContinentPopulation(Connection con, String name) {
+
+        //If statement to verify connection to database is successful and in-use.
+        if (con == null) {
+            System.out.println("Connection is null.");
+            return;  // Exit the method if there is no connection
+        }
+
+        //SQL Query in order to retrieve details of specified Continent.
+        String query =
+                "SELECT SUM(country.Population) AS continent_population, " +
+                        "ROUND(SUM(city.population) / SUM(country.Population) * 100, 1) AS urban_percentage, " +
+                        "ROUND((SUM(country.population) - SUM(city.population)) / SUM(country.population) * 100, 1) AS rural_percentage " +
+                        "FROM country " +
+                        "INNER JOIN city ON city.CountryCode = country.Code " +
+                        "WHERE country.Continent = '" + name + "'";
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            //sets column values into variables for print.
+            if(rs.next()) {
+                long totalPopulation = rs.getLong("continent_population");
+                double urbanPercentage = rs.getDouble("urban_percentage");
+                double ruralPercentage = rs.getDouble("rural_percentage");
+
+
+                //Prints out results requested.
+                System.out.println("Total Population: " + totalPopulation + "\nUrban Percentage - " + urbanPercentage +
+                        "%\nRural Percentage - " + ruralPercentage + "%");
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get continent details " + e.getMessage());
+        }
     }
 }
