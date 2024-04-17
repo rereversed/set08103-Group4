@@ -64,7 +64,31 @@ public class Region {
         }
     }
 
-    public void getCitiesByRegionPopulation(Connection con) {
+    public void getCitiesByRegionPopulation(Connection con, String name) {
+        if (con == null){
+            System.out.println("Connection is Null ");
+            return;
+        }
+
+        String query =  "SELECT city.Name AS city_name, city.Population " +
+                        "FROM city " +
+                        "JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE country.Region = '" + name + "'" +
+                        "ORDER BY city.Population DESC;";
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            while (rs.next()){
+
+                String cityName = rs.getString("city_name");
+                int population = rs.getInt("Population");
+                System.out.println(cityName + "   " + population);
+            }
+        }catch (SQLException e ){
+            System.out.println("Failed to get details " + e.getMessage());
+        }
+
     }
 
     public void getTopNCitiesByRegionPopulation(Connection con, int n) {
