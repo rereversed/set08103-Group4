@@ -164,7 +164,35 @@ public class Continent {
 
     }
 
-    public void getTopNCapitalCitiesByContinentPopulation(Connection con, int n) {
+    public void getTopNCapitalCitiesByContinentPopulation(Connection con, int n, String name) {
+        if (con == null){
+            System.out.println("Connection is Null");
+            return;
+        }
+
+        String query = "SELECT city.Name AS city_name, country.Name AS country_name, city.Population " +
+                        "FROM city " +
+                        "JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE country.Continent =  '" + name + "'" +
+                        "AND city.ID = country.Capital " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n;
+
+        try (Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            while(rs.next()){
+                String cityName = rs.getString("city_name");
+                String countryName = rs.getString("country_name");
+                int population = rs.getInt("Population");
+
+                System.out.println(cityName + "  " + countryName + "  " + population);
+
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get details " + e.getMessage());
+        }
+
     }
 
     public void getPopulationDistributionByContinent(Connection con) {
