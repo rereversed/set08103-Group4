@@ -70,7 +70,33 @@ public class Continent {
 
     }
 
-    public void getCitiesByContinentPopulation(Connection con) {
+    public void getCitiesByContinentPopulation(Connection con, String name) {
+        if (con == null){
+            System.out.println("Connection is Null:");
+            return;
+        }
+
+        String query =  "SELECT ci.Name AS city_name, co.Name AS country_name, ci.District, ci.Population " +
+                        "FROM city ci " +
+                        "INNER JOIN country co ON ci.CountryCode = co.Code " +
+                        "WHERE co.Continent = '" + name + "'" +
+                        "ORDER BY ci.Population DESC;";
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            while(rs.next()){
+                String cityName = rs.getString("city_name");
+                String countryName = rs.getString("country_name");
+                String district = rs.getString("District");
+                int population = rs.getInt("Population");
+
+                System.out.printf("%-20s | %-30s | %-20s | %-10d%n", cityName, countryName, district, population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Deatils: ");
+        }
+
     }
 
     public void getTopNCitiesByContinentPopulation(Connection con, int n) {
