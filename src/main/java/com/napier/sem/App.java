@@ -281,7 +281,8 @@ public class App {
                 c.getCapitalCitiesByContinentPopulation(con,name);
                 break;
             case 19: /*  Region  */
-                d.getCapitalCitiesByRegionPopulation(con);
+                name = inputHandler.getUserRegion();
+                d.getCapitalCitiesByRegionPopulation(con, name);
                 break;
             case 20: /*  World  */
                 n = inputHandler.getPositiveInt();
