@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -134,7 +135,33 @@ public class Continent {
 
     }
 
-    public void getCapitalCitiesByContinentPopulation(Connection con) {
+    public void getCapitalCitiesByContinentPopulation(Connection con, String name) {
+        if(con == null){
+            System.out.println("Connection is Null");
+            return;
+        }
+
+        String query =  "SELECT city.Name AS city_name, country.Name AS country_name, city.Population " +
+                        "FROM city " +
+                        "JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE country.Continent = '" + name + "'" +
+                        "AND city.ID = country.Capital " +
+                        "ORDER BY city.Population DESC;";
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            while(rs.next()){
+                String cityName = rs.getString("city_name");
+                String countryName = rs.getString("country_name");
+                int population = rs.getInt("Population");
+
+                System.out.println(cityName + "  " + countryName + "  " + population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Details " + e.getMessage());
+        }
+
     }
 
     public void getTopNCapitalCitiesByContinentPopulation(Connection con, int n) {
