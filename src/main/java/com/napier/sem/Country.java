@@ -170,26 +170,25 @@ public class Country {
     }
 
     public void getCountryPopulation(Connection con, String name) {
-        System.out.println(name);
         if (con == null) {
             System.out.println("Connection is null.");
             return;
         }
 
+        //SQL Query to get Country's Population.
         String query = "SELECT * " +
                 "FROM country " +
                 "WHERE name = '" + name + "'";
 
-        System.out.println(query);
 
+        //
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             if (rs.next()) {
                 String countryName = rs.getString("Name");
                 int population = rs.getInt("Population");
 
-                System.out.println(countryName);
-                System.out.println("Total Population: " + population);
+                System.out.println(countryName + "'s Total Population: " + population);
             }
         } catch (SQLException e) {
             System.out.println("Failed to get population details: " + e.getMessage());
