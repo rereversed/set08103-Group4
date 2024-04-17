@@ -6,7 +6,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Continent {
-    public void getCountriesByContinentPopulation(Connection con) {
+    public void getCountriesByContinentPopulation(Connection con, String name) {
+        if (con == null){
+            System.out.println("Connection is Null");
+            return;
+        }
+
+        String query =  "SELECT Name, Population, Region " +
+                        "FROM country " +
+                        "WHERE continent = '" + name + "'" +
+                        "ORDER BY Population DESC";
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+            while (rs.next()){
+                String countryName = rs.getString("Name");
+                String region = rs.getString("Region");
+                int population = rs.getInt("Population");
+
+                System.out.println(countryName + "  " + region + "  " + population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Details" + e.getMessage());
+        }
+
     }
 
     public void getTopNCountriesByContinentPopulation(Connection con, int n) {

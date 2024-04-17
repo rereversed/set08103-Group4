@@ -210,7 +210,8 @@ public class App {
                 b.getCountriesByPopulation(con);
                 break;
             case 2: //CONTINENT
-                c.getCountriesByContinentPopulation(con);
+                name = inputHandler.getUserContinent();
+                c.getCountriesByContinentPopulation(con, name);
                 break;
             case 3: /*  Region  */
                 d.getCountriesByRegionPopulation(con);
