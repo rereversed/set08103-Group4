@@ -154,7 +154,49 @@ public class Region {
 
     }
 
-    public void getTopNCapitalCitiesByRegionPopulation(Connection con, int n) {
+    public void getTopNCapitalCitiesByRegionPopulation(Connection con, int n, String name) {
+        if(con == null){
+            System.out.println("Connection is Null");
+            return;
+        }
+
+        if(n<1){
+            System.out.println("N must be greater tha 1");
+            n=1;
+        }
+
+        String query = "SELECT city.Name AS city_name, country.Name AS country_name, city.Population " +
+                        "FROM city " +
+                        "JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE country.Region =  '" + name + "'"+
+                        "AND city.ID IN ( " +
+                        "    SELECT ID " +
+                        "    FROM city " +
+                        "    WHERE CountryCode IN ( " +
+                        "        SELECT Code " +
+                        "        FROM country " +
+                        "        WHERE Region =  '" + name + "'" +
+                        "          AND Capital = city.ID " +
+                        "    ) " +
+                        "    ORDER BY Population DESC " +
+                        "    LIMIT " + n +
+                        ") " +
+                        "ORDER BY city.Population DESC;";
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            while(rs.next()){
+
+                String cityName = rs.getString("city_name");
+                int population = rs.getInt("population");
+                System.out.println(cityName + "  " + population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Deatils " + e.getMessage());
+        }
+
+
     }
 
     public void getPopulationDistributionByRegion(Connection con) {
