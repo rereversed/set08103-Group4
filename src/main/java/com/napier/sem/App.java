@@ -305,7 +305,8 @@ public class App {
                 c.getPopulationDistributionByContinent(con);
                 break;
             case 24: /*  Region  */
-                d.getPopulationDistributionByRegion(con);
+                name = inputHandler.getUserRegion();
+                d.getPopulationDistributionByRegion(con, name);
                 break;
             case 25: /*  Country  */
                 name = inputHandler.getUserCountry();
