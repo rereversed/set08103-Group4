@@ -156,7 +156,38 @@ public class Region {
 
     }
 
-    public void getTopNCapitalCitiesByRegionPopulation(Connection con, int n) {
+    public void getTopNCapitalCitiesByRegionPopulation(Connection con, int n, String name) {
+        if(con == null){
+            System.out.println("Connection is Null");
+            return;
+        }
+
+        if(n<1){
+            System.out.println("N must be greater tha 1");
+            n=1;
+        }
+
+        String query =  "SELECT * " +
+                        "FROM city INNER JOIN country ON country.capital = city.ID " +
+                        " WHERE country.Region = '" + name + "'" +
+                        " ORDER BY city.population DESC LIMIT " + n;
+
+//
+
+        try(Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query)){
+
+            while(rs.next()){
+
+                String cityName = rs.getString("name");
+                int population = rs.getInt("population");
+                System.out.println(cityName + "  " + population);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to get Details " + e.getMessage());
+        }
+
+
     }
 
     public void getPopulationDistributionByRegion(Connection con) {
