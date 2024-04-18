@@ -10,7 +10,6 @@
     <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="graalvm-jdk-17" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />c
-
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
