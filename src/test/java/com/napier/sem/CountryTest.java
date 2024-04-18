@@ -28,12 +28,12 @@ class CountryTest {
 
     @Test
     void testGetCitiesByCountryPopulation_nullConnection()
-            throws SQLException { c.getCitiesByCountryPopulation(null);
+            throws SQLException { c.getCitiesByCountryPopulation(con, "China");
     }
 
     @Test
     void testGetTopNCitiesByCountryPopulation_invalidN()
-            throws SQLException { c.getTopNCitiesByCountryPopulation(con, -1);
+            throws SQLException { c.getTopNCitiesByCountryPopulation(con, -1, "Germany");
     }
 
     @Test
