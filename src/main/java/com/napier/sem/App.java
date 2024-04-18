@@ -1,4 +1,5 @@
 package com.napier.sem;
+
 import java.sql.*;
 import java.util.Scanner;
 
@@ -7,6 +8,7 @@ public class App {
     static InputHandler inputHandler = new InputHandler(scanner);
 
     public static Connection con = null;
+
     private static boolean askContinue() {
         System.out.print("Do you want to view another report? (yes/no): ");
         String response = scanner.nextLine();  // Change from `scanner.next()` to `scanner.nextLine()`
@@ -52,73 +54,54 @@ public class App {
             } catch (Exception E) {
                 System.out.println(" Error: Invalid Input");
             }
-        return null;
-        }
-
-
-
-        public String getUserContinent(){
-                System.out.println(("Please Input the continent "));
-                String input = scanner.nextLine();
-                try {
-                    String continent = input;
-                    if (continent != null){
-                        return continent;
-                    } else {
-                        System.out.println("Error: Please enter a continent");
-                    }
-                }   catch (Exception E){
-                    System.out.println(" Error: Invalid Input");
-                }
-
             return null;
         }
 
-        public String getUserRegion (){
-                System.out.println(("Please Input the Region "));
-                String input = scanner.nextLine();
-                try {
-                    String region = input;
-                    if (region != null){
-                        return region;
-                    } else {
-                        System.out.println("Error: Please enter a Region");
-                    }
-                }   catch (Exception E){
-                    System.out.println(" Error: Invalid Input");
-                }
-            return null;
-        }
 
-        public String getUserCity (){
-                System.out.println(("Please Input the City "));
-                String input = scanner.nextLine();
-                try {
-                    String city = input;
-                    if (city != null){
-                        return city;
-                    } else {
-                        System.out.println("Error: Please enter a City");
-                    }
-                }   catch (Exception E){
-                    System.out.println(" Error: Invalid Input");
-                }
-
-            return null;
-
-        }
-
-        public String getUserDistrict (){
-            System.out.println(("Please Input the District "));
+        public String getUserContinent() {
+            System.out.println(("Please Input the continent "));
             String input = scanner.nextLine();
             try {
-                String district = input;
-                if (district != null){
-                    return district;
+                String continent = input;
+                if (continent != null) {
+                    return continent;
                 } else {
-                    System.out.println("Error: Please enter a District");
+                    System.out.println("Error: Please enter a continent");
                 }
-            }   catch (Exception E){
+            } catch (Exception E) {
+                System.out.println(" Error: Invalid Input");
+            }
+
+            return null;
+        }
+
+        public String getUserRegion() {
+            System.out.println(("Please Input the Region "));
+            String input = scanner.nextLine();
+            try {
+                String region = input;
+                if (region != null) {
+                    return region;
+                } else {
+                    System.out.println("Error: Please enter a Region");
+                }
+            } catch (Exception E) {
+                System.out.println(" Error: Invalid Input");
+            }
+            return null;
+        }
+
+        public String getUserCity() {
+            System.out.println(("Please Input the City "));
+            String input = scanner.nextLine();
+            try {
+                String city = input;
+                if (city != null) {
+                    return city;
+                } else {
+                    System.out.println("Error: Please enter a City");
+                }
+            } catch (Exception E) {
                 System.out.println(" Error: Invalid Input");
             }
 
@@ -126,6 +109,23 @@ public class App {
 
         }
 
+        public String getUserDistrict() {
+            System.out.println(("Please Input the District "));
+            String input = scanner.nextLine();
+            try {
+                String district = input;
+                if (district != null) {
+                    return district;
+                } else {
+                    System.out.println("Error: Please enter a District");
+                }
+            } catch (Exception E) {
+                System.out.println(" Error: Invalid Input");
+            }
+
+            return null;
+
+        }
 
 
     }
@@ -155,7 +155,7 @@ public class App {
             }
         } else {
             // Example of running in non-interactive mode for CI
-           a.disconnect();
+            a.disconnect();
             // Add other non-interactive tests or operations as needed
         }
 
@@ -201,6 +201,7 @@ public class App {
         System.out.println("32. The number of people who speak the top 5 languages, inc %\n\n");
         System.out.println("0. Exit\n\n");
     }
+
     //Function for List of choices
     public static void processChoice(int choice, App a, World b, Continent c, Region d, Country e, Language f) {
         int n;
@@ -236,18 +237,19 @@ public class App {
                 break;
             case 8: /*  Continent  */
                 name = inputHandler.getUserContinent();
-                c.getCitiesByContinentPopulation(con,name);
+                c.getCitiesByContinentPopulation(con, name);
                 break;
             case 9: /*  Region  */
                 name = inputHandler.getUserRegion();
-                d.getCitiesByRegionPopulation(con,name);
+                d.getCitiesByRegionPopulation(con, name);
                 break;
             case 10: /*  Country  */
-                e.getCitiesByCountryPopulation(con);
+                name = inputHandler.getUserCountry();
+                e.getCitiesByCountryPopulation(con, name);
                 break;
             case 11: /*  Country  */
                 name = inputHandler.getUserDistrict();
-                System.out.println("City Name"+ "  "+  "Population");
+                System.out.println("City Name" + "  " + "Population");
                 e.getCitiesByDistrictPopulation(con, name);
                 break;
             case 12: /*  World  */
@@ -266,7 +268,8 @@ public class App {
                 break;
             case 15: /*  Country  */
                 n = inputHandler.getPositiveInt();
-                e.getTopNCitiesByCountryPopulation(con, n);
+                name = inputHandler.getUserCountry();
+                e.getTopNCitiesByCountryPopulation(con, n, name);
                 break;
             case 16: /*  Country  */
                 n = inputHandler.getPositiveInt();
@@ -278,7 +281,7 @@ public class App {
                 break;
             case 18: /*  Continent  */
                 name = inputHandler.getUserContinent();
-                c.getCapitalCitiesByContinentPopulation(con,name);
+                c.getCapitalCitiesByContinentPopulation(con, name);
                 break;
             case 19: /*  Region  */
                 name = inputHandler.getUserRegion();
@@ -315,7 +318,8 @@ public class App {
                 c.getContinentPopulation(con, name);
                 break;
             case 28: /*  Region  */
-                d.getRegionPopulation(con);
+                name = inputHandler.getUserRegion();
+                d.getRegionPopulation(con, name);
                 break;
             case 29: /*  Country  */
                 name = inputHandler.getUserCountry();
@@ -323,7 +327,7 @@ public class App {
                 break;
             case 30: /*  Country  */
                 name = inputHandler.getUserDistrict();
-                e.getDistrictPopulation(con,name);
+                e.getDistrictPopulation(con, name);
                 break;
             case 31: /*  Country  */
                 name = inputHandler.getUserCity();
@@ -339,6 +343,7 @@ public class App {
             // Handle other cases
         }
     }
+
     //function to connect to database
     public void connect() {
         try {
