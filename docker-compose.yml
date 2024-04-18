@@ -2,9 +2,11 @@ version: '3'
 
 services:
   app:
-    build: .
+    build: RUN apt-get update && apt-get install -y mysql-client
+
     stdin_open: true  # docker run -i
     tty: true         # docker run -t
+
     depends_on:
       db:
         condition: service_healthy
@@ -13,6 +15,7 @@ services:
     stop_grace_period: "2m"
     networks:
       - app-network
+
 
   db:
     build: db/.
