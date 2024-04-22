@@ -1,0 +1,44 @@
+body:
+- type: markdown
+  attributes:
+    value: "## Welcome!"
+- type: markdown
+  attributes:
+    value: |
+      Thanks for taking the time to fill out this bug! If you need real-time help, join us on Discord.
+
+ - type: input
+   id: contact
+   attributes:
+    label: Contact Information
+    description: Leave your contact info here if we need further details.
+    placeholder: e.g., email@example.com
+   validations:
+    required: false
+
+ - type: textarea
+   id: what-happened
+   attributes:
+    label: What happened?
+    description: Explain what occurred in a clear and concise manner.
+    placeholder: Describe the issue.
+    value: "A bug occurred!"
+   validations:
+    required: true
+
+ - type: textarea
+   id: expected-result
+   attributes:
+    label: Expected Result
+    description: Describe what you expected to happen.
+    placeholder: What did you expect to see?
+    value: "I expected a different outcome!"
+   validations:
+    required: true
+
+ - type: textarea
+   id: logs
+   attributes:
+    label: Error Messages
+    description: Please provide any relevant log output.
+    render: shell
