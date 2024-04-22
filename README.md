@@ -34,3 +34,42 @@ Release [![Releases](https://img.shields.io/github/release/rereversed/set08103-G
 7. Features merged into develop will be periodically reviewed and tested as a part of the preparation for merging into the main and then release branches ! ✈️
 
    ---
+
+32 Requirements of 32 have been met, which is 100%
+
+Requirements Table:
+
+| ID | Name  | Met     | Screenshot |
+|----|-------|---------|------------|
+| 1  | table | yes     | hello      |
+| 2  | table | yes     | hello      |
+| 3  | table | yes     | hello      |
+| 4  | table | yes     | hello      |
+| 5  | table | yes     | hello      |
+| 6  | table | yes     | hello      |
+| 7  | table | yes     | hello      |
+| 8  | table | yes     | hello      |
+| 9  | table | yes     | hello      |
+| 10 | table | yes     | hello      |
+| 11 | table | yes     | hello      |
+| 12 | table | yes     | hello      |
+| 13 | table | yes     | hello      |
+| 14 | table | yes     | hello      |
+| 15 | table | yes     | hello      |
+| 16 | table | yes     | hello      |
+| 17 | table | yes     | hello      |
+| 18 | table | yes     | hello      |
+| 19 | table | yes     | hello      |
+| 20 | table | yes     | hello      |
+| 21 | table | yes     | hello      |
+| 22 | table | yes     | hello      |
+| 23 | table | yes     | hello      |
+| 24 | table | yes     | hello      |
+| 25 | table | yes     | hello      |
+| 26 | table | yes     | hello      |
+| 27 | table | yes     | hello      |
+| 28 | table | yes     | hello      |
+| 29 | table | yes     | hello      |
+| 30 | table | yes     | hello      |
+| 31 | table | yes     | hello      |
+| 32 | table | yes     | hello      |
