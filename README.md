@@ -33,43 +33,44 @@ Release [![Releases](https://img.shields.io/github/release/rereversed/set08103-G
 6. Upon receiving approval, merge your changes into the **develop** branch. Ensure to pull the latest changes from develop and resolve any conflicts before the final merge to maintain a stable code base.
 7. Features merged into develop will be periodically reviewed and tested as a part of the preparation for merging into the main and then release branches ! ✈️
 
-   ---
+---
 
-32 Requirements of 32 have been met, which is 100%
+# Requirements Table:
+[Some Screenshots have been cut short to fit on the table]
 
-Requirements Table:
+| ID | Name                                                                                                  | Met     | Screenshot                         |
+|----|-------------------------------------------------------------------------------------------------------|---------|------------------------------------|
+| 1  | All the countries in the world organised by largest population to smallest.                           | yes     | ![Alt text](requirement_ss/1.png)  |
+| 2  | All the countries in a continent organised by largest population to smallest.                         | yes     | ![Alt text](requirement_ss/2.png)  |
+| 3  | All the countries in a region organised by largest population to smallest.                            | yes     | ![Alt text](requirement_ss/3.png)  |
+| 4  | The top N populated countries in the world where N is provided by the user.                           | yes     | ![Alt text](requirement_ss/4.png)  |
+| 5  | The top N populated countries in a continent where N is provided by the user.                         | yes     | ![Alt text](requirement_ss/5.png)  |
+| 6  | The top N populated countries in a region where N is provided by the user.                            | yes     | ![Alt text](requirement_ss/6.png)  |
+| 7  | All the cities in the world organised by largest population to smallest.                              | yes     | ![Alt text](requirement_ss/7.png)  |
+| 8  | All the cities in a continent organised by largest population to smallest.                            | yes     | ![Alt text](requirement_ss/8.png)  |
+| 9  | All the cities in a region organised by largest population to smallest.                               | yes     | ![Alt text](requirement_ss/9.png)  |
+| 10 | All the cities in a country organised by largest population to smallest.                              | yes     | ![Alt text](requirement_ss/10.png) |
+| 11 | All the cities in a district organised by largest population to smallest.                             | yes     | ![Alt text](requirement_ss/11.png) |
+| 12 | The top N populated cities in the world where N is provided by the user.                              | yes     | ![Alt text](requirement_ss/12.png) |
+| 13 | The top N populated cities in a continent where N is provided by the user.                            | yes     | ![Alt text](requirement_ss/13.png) |
+| 14 | The top N populated cities in a region where N is provided by the user.                               | yes     | ![Alt text](requirement_ss/14.png) |
+| 15 | The top N populated cities in a country where N is provided by the user.                              | yes     | ![Alt text](requirement_ss/15.png) |
+| 16 | The top N populated cities in a district where N is provided by the user.                             | yes     | ![Alt text](requirement_ss/16.png) |
+| 17 | All the capital cities in the world organised by largest population to smallest.                      | yes     | ![Alt text](requirement_ss/17.png) |
+| 18 | All the capital cities in a continent organised by largest population to smallest.                    | yes     | ![Alt text](requirement_ss/18.png) |
+| 19 | All the capital cities in a region organised by largest to smallest.                                  | yes     | ![Alt text](requirement_ss/19.png) |
+| 20 | The top N populated capital cities in the world where N is provided by the user.                      | yes     | ![Alt text](requirement_ss/20.png) |
+| 21 | The top N populated capital cities in a continent where N is provided by the user.                    | yes     | ![Alt text](requirement_ss/21.png) |
+| 22 | The top N populated capital cities in a region where N is provided by the user.                       | yes     | ![Alt text](requirement_ss/22.png) |
+| 23 | The population of people, people living in cities, and people not living in cities in each continent. | yes     | ![Alt text](requirement_ss/23.png) |
+| 24 | The population of people, people living in cities, and people not living in cities in each region.    | yes     | ![Alt text](requirement_ss/24.png) |
+| 25 | The population of people, people living in cities, and people not living in cities in each country.   | yes     | ![Alt text](requirement_ss/25.png) |
+| 26 | The population of the world.                                                                          | yes     | ![Alt text](requirement_ss/26.png) |
+| 27 | The population of a continent.                                                                        | yes     | ![Alt text](requirement_ss/27.png) |
+| 28 | The population of a region.                                                                           | yes     | ![Alt text](requirement_ss/28.png) |
+| 29 | The population of a country.                                                                          | yes     | ![Alt text](requirement_ss/29.png) |
+| 30 | The population of a district.                                                                         | yes     | ![Alt text](requirement_ss/30.png) |
+| 31 | The population of a city.                                                                             | yes     | ![Alt text](requirement_ss/31.png) |
+| 32 | The number of people who speak the top 5 languages, inc %                                             | yes     | ![Alt text](requirement_ss/32.png) |
 
-| ID | Name  | Met     | Screenshot |
-|----|-------|---------|------------|
-| 1  | table | yes     | hello      |
-| 2  | table | yes     | hello      |
-| 3  | table | yes     | hello      |
-| 4  | table | yes     | hello      |
-| 5  | table | yes     | hello      |
-| 6  | table | yes     | hello      |
-| 7  | table | yes     | hello      |
-| 8  | table | yes     | hello      |
-| 9  | table | yes     | hello      |
-| 10 | table | yes     | hello      |
-| 11 | table | yes     | hello      |
-| 12 | table | yes     | hello      |
-| 13 | table | yes     | hello      |
-| 14 | table | yes     | hello      |
-| 15 | table | yes     | hello      |
-| 16 | table | yes     | hello      |
-| 17 | table | yes     | hello      |
-| 18 | table | yes     | hello      |
-| 19 | table | yes     | hello      |
-| 20 | table | yes     | hello      |
-| 21 | table | yes     | hello      |
-| 22 | table | yes     | hello      |
-| 23 | table | yes     | hello      |
-| 24 | table | yes     | hello      |
-| 25 | table | yes     | hello      |
-| 26 | table | yes     | hello      |
-| 27 | table | yes     | hello      |
-| 28 | table | yes     | hello      |
-| 29 | table | yes     | hello      |
-| 30 | table | yes     | hello      |
-| 31 | table | yes     | hello      |
-| 32 | table | yes     | hello      |
+# 32 Requirements of 32 have been met, which is 100%
